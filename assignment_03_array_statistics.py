@@ -39,3 +39,63 @@
 # YOUR CODE BELOW — remove the # symbols from the scaffold and fill it in
 # =============================================================================
 
+def calculate_sum(numbers):
+    total = 0
+    for num in numbers:
+        total += num
+    return total
+
+
+def calculate_average(numbers):
+    if not numbers:
+        return 0
+    return calculate_sum(numbers) / len(numbers)
+
+
+def find_maximum(numbers):
+    max_val = numbers[0]
+    for num in numbers:
+        if num > max_val:
+            max_val = num
+    return max_val
+
+
+def find_minimum(numbers):
+    min_val = numbers[0]
+    for num in numbers:
+        if num < min_val:
+            min_val = num
+    return min_val
+
+
+def main():
+    try:
+        count = int(input("How many numbers? "))
+        
+        if count <= 0:
+            print("Error: Number of elements must be a positive integer.")
+            return
+
+        numbers = []
+        for i in range(1, count + 1):
+            num = float(input(f"Enter number {i}: "))
+            numbers.append(num)
+
+        total_sum = calculate_sum(numbers)
+        avg = calculate_average(numbers)
+        maximum = find_maximum(numbers)
+        minimum = find_minimum(numbers)
+
+        print("\nResults:")
+        # Format as int if whole numbers to match expected output formatting
+        print(f"  Sum: {int(total_sum) if total_sum.is_integer() else total_sum}")
+        print(f"  Average: {round(avg, 2) if not avg.is_integer() else int(avg)}")
+        print(f"  Maximum: {int(maximum) if maximum.is_integer() else maximum}")
+        print(f"  Minimum: {int(minimum) if minimum.is_integer() else minimum}")
+
+    except ValueError:
+        print("Error: Please enter valid numbers.")
+
+
+if __name__ == "__main__":
+    main()
